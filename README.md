@@ -34,10 +34,10 @@ then run `bash /path/to/build_and_run.sh` everytime you change the code
 
 ### Flask variables and commands
 
-`export FLASK_APP=flask-app`
-`export FLASK_ENV=development`
-`export FLASK_DEBUG=1`
-`flask run --host=0.0.0.0`
+- `export FLASK_APP=flask-app`
+- `export FLASK_ENV=development`
+- `export FLASK_DEBUG=1`
+- `flask run --host=0.0.0.0`
 
 --------------------------------------
 
