@@ -1,29 +1,41 @@
 import os
+import socket
 
 from flask import Flask
+from flask import render_template
 
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     @app.route('/')
-    def root():
-        return "Welcome to message in a flask!"
+    def home():
+        return render_template('home_view.html', 
+            home_info="Welcome to Message in a Flask!", 
+            route="Home")
 
-    @app.route('/hello')
-    def hello():
-        return 'Howdy!'
+    @app.route('/sql')
+    def sql():
+        return render_template('sql_view.html', 
+            sql_info="In development", 
+            route="SQL")
 
-    @app.route('/sql-database')
-    def sqldb():
-        return 'Hello, sqldb!'
+    @app.route('/environment')
+    def environment():
+        hostname = socket.gethostname()
+        ip_address = socket.gethostbyname(hostname)
 
-    @app.route('/container')
-    def container():
-        return 'Hello, Container!' 
+        env_info = {
+            "Hostname": hostname,
+            "IPv4": ip_address
+        }
+
+        return render_template('environment_view.html', 
+            env_info=env_info, 
+            route="Environment")
 
     @app.route('/<random_url>')
     def random_url(random_url):
-        return f"Page: \" {random_url} \" does not exist."
+        return f"404: Page \" {random_url} \" does not exist."
 
     return app

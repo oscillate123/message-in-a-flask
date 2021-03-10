@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  	<h1>{% block title %} {{ route }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+        {% if home_info %}     
+            <div class="about"> {{ home_info }} </div>
+        {% endif %}
+    </article>
+{% endblock %}
