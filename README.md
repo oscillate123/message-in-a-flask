@@ -117,6 +117,7 @@ networks: # if you have vpn active, adding this part will specify that the defau
 - Docker network error - https://stackoverflow.com/questions/43720339/docker-error-could-not-find-an-available-non-overlapping-ipv4-address-pool-am
 - Flask - https://runnable.com/docker/python/dockerize-your-flask-application
 - Tags - https://docs.docker.com/engine/reference/commandline/tag/
+- Docker linting (size optimization) - https://www.fromlatest.io/#/
 
 
 ##### MySQL related links
