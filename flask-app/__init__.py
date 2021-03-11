@@ -4,7 +4,7 @@ import socket
 from flask import Flask
 from flask import render_template
 
-from sql.sql import MysqlInstance
+from .sql.sql import MysqlInstance
 
 
 def create_app(test_config=None):
@@ -37,6 +37,8 @@ def create_app(test_config=None):
             route="Environment")
 
     @app.route('/variables')
+    def variables():
+        return os.environ
 
     @app.route('/<random_url>')
     def random_url(random_url):

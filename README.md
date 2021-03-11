@@ -100,32 +100,23 @@ networks: # if you have vpn active, adding this part will specify that the defau
 
 ##### Python documentation 
 - https://docs.python-guide.org/writing/structure/
-
-
-##### Python MySQL
-- https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py
-- https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html
+- https://stackoverflow.com/questions/4906977/how-to-access-environment-variable-values
+- Python mysql class - https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py
+- Python Mysql connector - https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html
 
 
 ##### Flask documentation
 - https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/
 - https://flask.palletsprojects.com/en/1.1.x/quickstart/
-
-
-##### Flask example project
-- https://github.com/pallets/flask/blob/1.1.2/examples/tutorial/flaskr/templates/blog/index.html
-
-
-##### Flask usefull links
+- Flask example project - https://github.com/pallets/flask/blob/1.1.2/examples/tutorial/flaskr/templates/blog/index.html
 - https://stackoverflow.com/questions/32677167/in-a-flask-app-how-to-print-each-item-of-a-list-in-the-new-paragraphs-inside-my
-- https://runnable.com/docker/python/dockerize-your-flask-application
-- https://docs.docker.com/engine/reference/commandline/tag/
 
 
-##### Docker related links
-- https://docs.google.com/document/d/1EJa3VbtJSbRMWcpsm9xfZJMUBjHed2c8xS0sJQ919_g
-- https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee
-- https://stackoverflow.com/questions/43720339/docker-error-could-not-find-an-available-non-overlapping-ipv4-address-pool-am
+##### Docker documentation
+- Mysql docker-compose https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee
+- Docker network error - https://stackoverflow.com/questions/43720339/docker-error-could-not-find-an-available-non-overlapping-ipv4-address-pool-am
+- Flask - https://runnable.com/docker/python/dockerize-your-flask-application
+- Tags - https://docs.docker.com/engine/reference/commandline/tag/
 
 
 ##### MySQL related links
