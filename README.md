@@ -118,6 +118,8 @@ networks: # if you have vpn active, adding this part will specify that the defau
 - Flask - https://runnable.com/docker/python/dockerize-your-flask-application
 - Tags - https://docs.docker.com/engine/reference/commandline/tag/
 - Docker linting (size optimization) - https://www.fromlatest.io/#/
+- Tips on reduce image size - https://hackernoon.com/tips-to-reduce-docker-image-sizes-876095da3b34
+- Docker compose - https://docs.docker.com/compose/compose-file/compose-file-v3/
 
 
 ##### MySQL related links
