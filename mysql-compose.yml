@@ -5,11 +5,7 @@ services:
     container_name: mia-mysql
     image: mysql:8.0
     restart: always
-    environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'mia'
-      MYSQL_PASSWORD: 'Howdy1234'
-      MYSQL_ROOT_PASSWORD: 'r00tp455w0rd'
+    env_file: .sql.env
     ports:
       - '3306:3306'
     expose:

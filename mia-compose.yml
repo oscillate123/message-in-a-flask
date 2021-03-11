@@ -2,9 +2,11 @@ version: '3.3'
 
 services:
   web:
+    restart: unless-stopped
     build:
       context: ./
       dockerfile: Dockerfile
+    env_file: .flask.env
     image: mia:latest
     ports:
       - "5000:5000"
@@ -15,14 +17,8 @@ services:
 
   database:
     image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'mia'
-      MYSQL_PASSWORD: 'Howdy1234'
-      MYSQL_ROOT_PASSWORD: 'r00tp455w0rd'
-    # env_file:
-    #   - environmentfile.env
+    restart: unless-stopped
+    env_file: .sql.env
     ports:
       - '3306:3306'
     expose:
