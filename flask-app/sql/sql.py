@@ -60,3 +60,7 @@ class MysqlInstance():
 		self.__close()
 
 		return result
+
+	def databases(self):
+		query = 'SHOW DATABASES;'
+		return "blurg"

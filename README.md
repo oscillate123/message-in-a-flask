@@ -13,7 +13,9 @@ Message in a Flask is a docker image which show environment information and envi
 
 ### Docker CI/CD commands
 
-Terminal:
+#### MIA
+
+MIA with Terminal:
 ```
 git clone https://github.com/oscillate123/message-in-a-flask.git
 docker build --rm -t mia:latest ./message-in-a-flask
@@ -30,6 +32,13 @@ docker image prune -f
 docker run --name mia -d --rm -it -p 5000:5000 thlab/mia:latest
 ```
 then run `bash /path/to/build_and_run.sh` everytime you change the code
+
+#### MySQL
+
+MySQL with Terminal:
+```
+docker run --name mysql -d --rm -it -p 3306:3306 mysql:latest
+```
 
 
 ### Flask variables and commands
