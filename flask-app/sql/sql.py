@@ -12,7 +12,7 @@ class MysqlInstance():
     __session    = None
     __connection = None
 
-    def __init__(self, host='localhost', user='root', password='', database=''):
+    def __init__(self, host='0.0.0.0', user='root', password='', database=''):
     	self.__host 	= host
     	self.__user 	= user
     	self.__password = password
@@ -36,11 +36,25 @@ class MysqlInstance():
 		self.__session.close()
 		self.__connection.close()
 
-	def select(self, *args, table, **kwargs):
+	def __query(self, query):
+		result = None
+		self.__open()
+		self.__session.execute(query)
+		number_rows = self.__session.rowcount
+		number_columns = len(self.__session.description)
+
+		if number_rows >= 1 and number_columns > 1:
+			result = [item for item in self.__session.fetchall()]
+		else:
+			result = [item[0] for item in self.__session.fetchall()]
+		self.__close()
+
+		return result
+
+	def select(self, *args, table):
 		result = None
 		query = 'SELECT '
 		keys = args
-		values = tuple(kwargs.values())
 		l = len(keys) - 1
 
 		for i, key in enumerate(keys):
@@ -61,6 +75,18 @@ class MysqlInstance():
 
 		return result
 
-	def databases(self):
-		query = 'SHOW DATABASES;'
-		return "blurg"
+	def hostname(self):
+		query = 'select @@hostname;'
+		return self.__query(query=query)
+
+	def host_ip_and_port(self):
+		query = 'select host from information_schema.processlist;'
+		return self.__query(query=query)
+
+	def host_ip(self):
+		query = "SELECT SUBSTRING_INDEX(USER(), '@', -1);"
+		return self.__query(query=query)
+
+	def user(self):
+		query = "SELECT SUBSTRING_INDEX(USER(), '@', 1);"
+		return self.__query(query=query)

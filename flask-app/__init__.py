@@ -36,6 +36,8 @@ def create_app(test_config=None):
             env_info=env_info, 
             route="Environment")
 
+    @app.route('/variables')
+
     @app.route('/<random_url>')
     def random_url(random_url):
         return f"404: Page \" {random_url} \" does not exist."
