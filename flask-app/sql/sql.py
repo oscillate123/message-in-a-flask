@@ -28,7 +28,7 @@ class MysqlInstance():
 				print("Database does not exist")
 			else:
 				print(err)
-			else:
+		else:
 			self.__connection = conn
 			self.__session    = conn.cursor()
 

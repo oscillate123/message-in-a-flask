@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} {{ route }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+        {% if env_info %}
+            {% for info in env_info %}
+                <div class="about"> {{ info }}: {{ env_info[info] }} </div>
+            {% endfor %}
+        {% endif %}
+    </article>
+{% endblock %}

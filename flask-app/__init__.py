@@ -38,7 +38,10 @@ def create_app(test_config=None):
 
     @app.route('/variables')
     def variables():
-        return os.environ
+        env_info = os.environ
+        return render_template('variables_view.html',
+            env_info=env_info,
+            route="Variables")
 
     @app.route('/<random_url>')
     def random_url(random_url):
