@@ -65,3 +65,8 @@ then run `bash /path/to/build_and_run.sh` everytime you change the code
 
 #### Docker related links
 - https://docs.google.com/document/d/1EJa3VbtJSbRMWcpsm9xfZJMUBjHed2c8xS0sJQ919_g
+
+
+#### Python MySQL
+- https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py
+- https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html

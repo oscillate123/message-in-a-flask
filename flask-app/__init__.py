@@ -4,6 +4,8 @@ import socket
 from flask import Flask
 from flask import render_template
 
+from sql.sql import MysqlInstance
+
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
