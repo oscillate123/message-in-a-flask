@@ -13,7 +13,7 @@ services:
     expose:
       - "5000"
     links:
-      - "mia-db:mia"
+      - "database:web"
 
   database:
     image: mysql:8.0

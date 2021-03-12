@@ -18,8 +18,16 @@ def create_app(test_config=None):
 
     @app.route('/sql')
     def sql():
+
+        mysql = MysqlInstance(
+                host='0.0.0.0',
+                user=os.environ["MYSQL_USER"],
+                password=os.environ["MYSQL_PASSWORD"],
+                database=os.environ["MYSQL_DATABASE"]
+            )
+
         return render_template('sql_view.html', 
-            sql_info="In development", 
+            sql_instance=mysql, 
             route="SQL")
 
     @app.route('/environment')

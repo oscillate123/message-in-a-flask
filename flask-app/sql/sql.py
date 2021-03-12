@@ -12,15 +12,24 @@ class MysqlInstance():
 	__session    = None
 	__connection = None
 
-	def __init__(self, host='0.0.0.0', user='root', password='', database=''):
+	def __init__(self, user='root', password='', database='db', host='0.0.0.0', port='3306'):
 		self.__host 	= host
 		self.__user 	= user
 		self.__password = password
 		self.__database = database
+		self.__port		= port
 
 	def __open(self):
 		try:
-			conn = mysql.connector.connect(host=self.__host, user=self.__user, password=self.__password, database=self.__database)
+			cnx = mysql.connector.connect(
+				user=self.__user,
+				password=self.__password,
+				database=self.__database,
+				host=self.__host,
+				port=self.__port
+			)
+			self.__connection = cnx
+			self.__session = cnx.cursor()
 		except mysql.connector.Error as err:
 			if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
 				print("Something is wrong with your user name or password")
@@ -28,9 +37,6 @@ class MysqlInstance():
 				print("Database does not exist")
 			else:
 				print(err)
-		else:
-			self.__connection = conn
-			self.__session    = conn.cursor()
 
 	def __close(self):
 		self.__session.close()
@@ -89,4 +95,20 @@ class MysqlInstance():
 
 	def user(self):
 		query = "SELECT SUBSTRING_INDEX(USER(), '@', 1);"
-		return self.__query(query=query)
+		result = self.__query(query=query)
+		return result
+
+
+if __name__ == "__main__":
+	instance = MysqlInstance(
+		database='db',
+		user='mia',
+		password='Howdy1234',
+		host='0.0.0.0',
+		port='3306'
+	)
+
+	print(instance.user())
+	print(instance.hostname())
+	print(instance.host_ip())
+	print(instance.host_ip_and_port())

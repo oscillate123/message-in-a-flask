@@ -6,8 +6,9 @@
 
 {% block content %}
     <article class="post">
-        {% if sql_info %}     
-            <div class="about"> {{ sql_info }} </div>
+        {% if sql_instance %}
+            <div class="about"> {{ sql_instance.hostname() }} </div>
+        	}
         {% endif %}
     </article>
 {% endblock %}
