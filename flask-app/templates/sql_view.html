@@ -8,7 +8,8 @@
     <article class="post">
         {% if sql_instance %}
             <div class="about"> {{ sql_instance.hostname() }} </div>
-        	}
+        	{% if sql_instance.__error %}
+        		<div class="about"> {{ sql_instance.__error }} </div>
         {% endif %}
     </article>
 {% endblock %}

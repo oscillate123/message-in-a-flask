@@ -4,13 +4,14 @@ from mysql.connector import errorcode
 
 class MysqlInstance():
 
-	__instance   = None
-	__host       = None
-	__user       = None
-	__password   = None
-	__database   = None
-	__session    = None
+	__instance	= None
+	__host		= None
+	__user		= None
+	__password	= None
+	__database	= None
+	__session	= None
 	__connection = None
+	__error		= None
 
 	def __init__(self, user='root', password='', database='db', host='0.0.0.0', port='3306'):
 		self.__host 	= host
@@ -18,6 +19,7 @@ class MysqlInstance():
 		self.__password = password
 		self.__database = database
 		self.__port		= port
+		self.__error	= None
 
 	def __open(self):
 		try:
@@ -33,10 +35,13 @@ class MysqlInstance():
 		except mysql.connector.Error as err:
 			if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
 				print("Something is wrong with your user name or password")
+				self.__error = "Something is wrong with your user name or password"
 			elif err.errno == errorcode.ER_BAD_DB_ERROR:
 				print("Database does not exist")
+				self.__error = "Database does not exist"
 			else:
 				print(err)
+				self.__error = err
 
 	def __close(self):
 		self.__session.close()
