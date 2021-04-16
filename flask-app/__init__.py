@@ -2,7 +2,7 @@ import os
 import socket
 
 from flask import Flask
-from flask import render_template
+from flask import render_template, abort, redirect, url_for
 
 from .sql.sql import MysqlInstance
 
@@ -11,6 +11,10 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     @app.route('/')
+    def start():
+        return redirect(url_for('home'))
+
+    @app.route('/home')
     def home():
         return render_template('home_view.html', 
             home_info="Welcome to Message in a Flask!", 
@@ -20,7 +24,8 @@ def create_app(test_config=None):
     def sql():
 
         mysql = MysqlInstance(
-                host='0.0.0.0',
+                host=os.environ["MYSQL_IP"],
+                port=os.environ["MYSQL_PORT"],
                 user=os.environ["MYSQL_USER"],
                 password=os.environ["MYSQL_PASSWORD"],
                 database=os.environ["MYSQL_DATABASE"]

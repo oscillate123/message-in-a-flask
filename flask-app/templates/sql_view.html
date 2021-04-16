@@ -7,9 +7,10 @@
 {% block content %}
     <article class="post">
         {% if sql_instance %}
-            <div class="about"> {{ sql_instance.hostname() }} </div>
-        	{% if sql_instance.__error %}
-        		<div class="about"> {{ sql_instance.__error }} </div>
+	        <div class="about"> {{ sql_instance.hostname() }} </div>
+	        <div class="about"> {{ sql_instance.host_ip_and_port() }} </div>
+	        <div class="about"> {{ sql_instance.host_ip() }} </div>
+	        <div class="about"> {{ sql_instance.user() }} </div>
         {% endif %}
     </article>
 {% endblock %}
