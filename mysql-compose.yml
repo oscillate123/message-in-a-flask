@@ -5,7 +5,7 @@ services:
     container_name: mia-mysql
     image: mysql:8.0
     restart: always
-    env_file: .sql.env
+    env_file: flask-app/.sql.env
     ports:
       - '3306:3306'
     expose:

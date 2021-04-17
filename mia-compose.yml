@@ -6,7 +6,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    env_file: .flask.env
+    env_file: flask-app/.flask.env
     image: mia:latest
     ports:
       - "5000:5000"
@@ -18,7 +18,7 @@ services:
   database:
     image: mysql:8.0
     restart: unless-stopped
-    env_file: .sql.env
+    env_file: flask-app/.sql.env
     ports:
       - '3306:3306'
     expose:

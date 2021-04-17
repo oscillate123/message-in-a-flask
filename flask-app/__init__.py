@@ -23,6 +23,7 @@ def create_app(test_config=None):
     @app.route('/sql')
     def sql():
 
+
         mysql = MysqlInstance(
                 host=os.environ["MYSQL_IP"],
                 port=os.environ["MYSQL_PORT"],
@@ -40,9 +41,21 @@ def create_app(test_config=None):
         hostname = socket.gethostname()
         ip_address = socket.gethostbyname(hostname)
 
+        try:
+            dev_mysql_ip = socket.gethostbyname("database")
+        except socket.gaierror as err:
+            dev_mysql_ip = err
+
+        try:
+            oc_mysql_ip = socket.gethostbyname("mysql-v8-mia-dev")
+        except socket.gaierror as err:
+            oc_mysql_ip = err
+
         env_info = {
             "Hostname": hostname,
-            "IPv4": ip_address
+            "IPv4": ip_address,
+            "docker-database": dev_mysql_ip, # for local docker-compose runs
+            "openshift-database": oc_mysql_ip # for openshift runs
         }
 
         return render_template('environment_view.html', 
