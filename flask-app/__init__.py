@@ -42,21 +42,35 @@ def create_app(test_config=None):
         ip_address = socket.gethostbyname(hostname)
 
         try:
-            dev_mysql_ip = socket.gethostbyname("database")
+            dev_mysql_ip = socket.gethostbyname("database") # change this to your local db dns
         except socket.gaierror as err:
-            dev_mysql_ip = err
+            dev_mysql_ip = False
 
         try:
-            oc_mysql_ip = socket.gethostbyname("mysql-v8-mia-dev")
+            oc_mysql_ip = socket.gethostbyname("mysql-v8-mia-dev") # change this to your cluster db dns
         except socket.gaierror as err:
-            oc_mysql_ip = err
+            oc_mysql_ip = False
 
-        env_info = {
-            "Hostname": hostname,
-            "IPv4": ip_address,
-            "docker-database": dev_mysql_ip, # for local docker-compose runs
-            "openshift-database": oc_mysql_ip # for openshift runs
-        }
+
+
+        if oc_mysql_ip:
+            env_info = {
+                "Hostname": hostname,
+                "IPv4": ip_address,
+                "cluster database found": oc_mysql_ip # for openshift runs
+            }
+        elif dev_mysql_ip:
+            env_info = {
+                "Hostname": hostname,
+                "IPv4": ip_address,
+                "docker database found": dev_mysql_ip # for local docker-compose runs
+            }
+        else:
+            env_info = {
+                "Hostname": hostname,
+                "IPv4": ip_address,
+                "no specified database found": None # for local docker-compose runs
+            }
 
         return render_template('environment_view.html', 
             env_info=env_info, 

@@ -7,10 +7,14 @@
 {% block content %}
     <article class="post">
         {% if sql_instance %}
-	        <div class="about"> {{ sql_instance.hostname() }} </div>
-	        <div class="about"> {{ sql_instance.host_ip_and_port() }} </div>
-	        <div class="about"> {{ sql_instance.host_ip() }} </div>
-	        <div class="about"> {{ sql_instance.user() }} </div>
+	        <div class="about"> DB HOSTNAME:  {{ sql_instance.hostname()[0] }} </div>
+	        <div class="about"> DB IPv4:  {{ sql_instance.host_ip()[0] }} </div>
+	        <div class="about"> DB USER:  {{ sql_instance.user()[0] }} </div>
+	        <p>
+	        <div class="about"> DB Connections </div>
+            {% for connection in sql_instance.host_ip_and_port() %}
+                <div class="about"> Host {{ loop.index0+1 }}: {{ connection }} </div>
+            {% endfor %}
         {% endif %}
     </article>
 {% endblock %}

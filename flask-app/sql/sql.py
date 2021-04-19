@@ -87,11 +87,11 @@ class MysqlInstance():
 		return result
 
 	def hostname(self):
-		query = 'select @@hostname;'
+		query = 'SELECT @@hostname;'
 		return self.__query(query=query)
 
 	def host_ip_and_port(self):
-		query = 'select host from information_schema.processlist;'
+		query = 'SELECT host FROM information_schema.processlist;'
 		return self.__query(query=query)
 
 	def host_ip(self):
