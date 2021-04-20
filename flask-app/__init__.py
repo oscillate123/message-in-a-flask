@@ -47,7 +47,7 @@ def create_app(test_config=None):
             dev_mysql_ip = False
 
         try:
-            oc_mysql_ip = socket.gethostbyname("mysql-v8-mia-dev") # change this to your cluster db dns
+            oc_mysql_ip = socket.gethostbyname("mysql-master") # change this to your cluster db dns
         except socket.gaierror as err:
             oc_mysql_ip = False
 
